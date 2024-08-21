@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="stylesheet" href="<?= get_template_directory_uri() ?>/assets/css/app.css" type="text/css" />
 
-  <title><?php bloginfo('name'); ?></title>
   <?php
   // CSS
   wp_enqueue_style(
