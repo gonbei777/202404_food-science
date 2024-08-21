@@ -1,6 +1,10 @@
 <?php
 
+// タイトルタグを有効化する
 add_theme_support('title-tag');
+
+// アイキャッチ画像を有効化する
+add_theme_support('post-thumbnails');
 
 
 // titleタグの区切り文字を変更する
