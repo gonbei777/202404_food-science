@@ -14,7 +14,17 @@
           <div class="section_body">
             <div class="content">
 
-              <?php the_content(); ?>
+              <?php
+              if (file_exists(get_template_directory() . '/template-pages/' . $post->post_name . '.php')) :
+              ?>
+
+                <?php get_template_part('template-pages/' . $post->post_name); ?>
+
+              <?php else: ?>
+
+                <?php the_content(); ?>
+
+              <?php endif; ?>
 
             </div>
           </div>
