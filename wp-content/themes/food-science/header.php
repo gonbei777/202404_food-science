@@ -42,12 +42,13 @@
     <div class="header_nav">
       <div class="header_menu js-menu-icon"><span></span></div>
       <div class="gnav js-menu">
-        <ul>
-          <li><a href="concept.html">コンセプト</a></li>
-          <li><a href="food.html">メニュー</a></li>
-          <li><a href="access.html">アクセス</a></li>
-          <li><a href="category.html">最新情報</a></li>
-        </ul>
+        <?php
+        $args = [
+          'menu' => 'global-navigation',
+        ];
+
+        wp_nav_menu($args);
+        ?>
 
         <div class="header_info">
           <form class="header_search">
