@@ -25,3 +25,27 @@ function my_wpcf7_autop()
 {
   return false;
 }
+
+
+// ショートコードテスト
+// ショートコード用関数
+
+// $test = [
+//   'text' => 'あいうえお',
+//   'link' => 'https://google.co.jp',
+// ];
+function shortcode_test($test, $content = null)
+{
+  $default = [
+    'text' => 'テキスト',
+    'link' => '',
+  ];
+  $test = shortcode_atts($default, $test);
+
+  $html = $content . 'ショートコードテスト' . $test['text'] . "({$test['link']})";
+
+  return $html;
+}
+// ショートコードの登録
+// add_shortcode('ショートコード名', '呼び出す関数名');
+add_shortcode('sc-test', 'shortcode_test');
