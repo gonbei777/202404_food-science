@@ -49,3 +49,22 @@ function shortcode_test($test, $content = null)
 // ショートコードの登録
 // add_shortcode('ショートコード名', '呼び出す関数名');
 add_shortcode('sc-test', 'shortcode_test');
+
+
+/**
+ * メインクエリを変更する
+ */
+add_action('pre_get_posts', 'my_pre_get_posts');
+function my_pre_get_posts($query)
+{
+  // 管理画面、メインクエリ以外は実行しない
+  if (is_admin() || !$query->is_main_query()) {
+    return;
+  }
+
+  // トップページ
+  if ($query->is_home()) {
+    $query->set('posts_per_page', 3);
+    return;
+  }
+}
