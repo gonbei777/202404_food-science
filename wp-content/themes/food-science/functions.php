@@ -68,3 +68,34 @@ function my_pre_get_posts($query)
     return;
   }
 }
+
+
+/**
+ * パスワード保護中のページのタイトルから「保護中」の文字を削除する
+ * 
+ */
+add_filter('protected_title_format', 'my_protected_title');
+function my_protected_title()
+{
+  return '%s';
+}
+
+/**
+ * パスワード保護フォームをカスタマイズする
+ */
+function my_password_form()
+{
+  remove_filter('the_content', 'wpautop');
+
+  $wp_login_url = wp_login_url();
+  $html = <<<HTML
+  <p>パスワードを入力してください。</p>
+  <form action="{$wp_login_url}" class="post-password-form" method="post">
+    <input name="post_password" type="password">
+    <input type="submit" name="Submit" value="送信">
+</form>
+HTML;
+
+  return $html;
+}
+add_filter('the_password_form', 'my_password_form');
