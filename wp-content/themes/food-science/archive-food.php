@@ -7,67 +7,51 @@
         <h2 class="heading heading-primary"><span>フード紹介</span>FOOD</h2>
       </div>
 
-      <section class="section_body">
-        <h3 class="heading heading-secondary">お食事<span>MEAL</span></h3>
-        <ul class="foodList">
+      <?php
+      $menu_terms = get_terms(['taxonomy' => 'menu']);
+      ?>
 
-          <?php if (have_posts()):  ?>
-            <?php while (have_posts()): the_post(); ?>
-              <li class="foodList_item">
-                <?php get_template_part('template-parts/loop', 'food'); ?>
-              </li>
-            <?php endwhile; ?>
-          <?php endif; ?>
+      <?php if ($menu_terms): ?>
+        <?php foreach ($menu_terms as $menu): ?>
+          <section class="section_body">
+            <h3 class="heading heading-secondary">
+              <a href="<?= get_term_link($menu); ?>"><?= $menu->name; ?></a>
+              <span><?= strtoupper($menu->slug); ?></span>
+            </h3>
+            <ul class="foodList">
 
-        </ul>
-      </section>
+              <?php
+              $args = [
+                'post_type' => 'food',
+                'posts_per_page' => -1, //全件取得
+                'tax_query' => [
+                  'relation' => 'AND',
+                  // [],[],[],... 条件を配列で指定（複数ある場合は配列を必要数用意する）
+                  [
+                    'taxonomy' => 'menu',
+                    'terms' => $menu->slug,
+                    'field' => 'slug'
+                  ]
+                ],
+              ];
+              $the_query = new WP_Query($args);
+              ?>
 
-      <section class="section_body">
-        <h3 class="heading heading-secondary">ドリンク<span>DRINK</span></h3>
-        <ul class="foodList">
-          <li class="foodList_item">
-            <div class="foodCard">
-              <a href="#">
-                <div class="foodCard_pic">
-                  <img src="assets/img/food/drink_img01@2x.png" alt="">
-                </div>
-                <div class="foodCard_body">
-                  <h4 class="foodCard_title">ビール</h4>
-                  <p class="foodCard_price">¥700</p>
-                </div>
-              </a>
-            </div>
-          </li>
+              <?php if ($the_query->have_posts()):  ?>
+                <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+                  <li class="foodList_item">
+                    <?php get_template_part('template-parts/loop', 'food'); ?>
+                  </li>
+                <?php endwhile;
+                wp_reset_postdata();
+                ?>
+              <?php endif; ?>
 
-          <li class="foodList_item">
-            <div class="foodCard">
-              <a href="#">
-                <div class="foodCard_pic">
-                  <img src="assets/img/food/drink_img02@2x.png" alt="">
-                </div>
-                <div class="foodCard_body">
-                  <h4 class="foodCard_title">アイスコーヒー</h4>
-                  <p class="foodCard_price">¥600</p>
-                </div>
-              </a>
-            </div>
-          </li>
+            </ul>
+          </section>
+        <?php endforeach; ?>
+      <?php endif; ?>
 
-          <li class="foodList_item">
-            <div class="foodCard">
-              <a href="#">
-                <div class="foodCard_pic">
-                  <img src="assets/img/food/drink_img03@2x.png" alt="">
-                </div>
-                <div class="foodCard_body">
-                  <h4 class="foodCard_title">コーヒー</h4>
-                  <p class="foodCard_price">¥500</p>
-                </div>
-              </a>
-            </div>
-          </li>
-        </ul>
-      </section>
     </div>
   </section>
 </main>
