@@ -11,6 +11,24 @@
     $args = [
       'post_type' => 'main-visual',
       'posts_per_page' => -1,
+      'meta_query' => [
+        'relation' => 'OR',
+        [
+          // end_date > date()
+          'key' => 'end_date',
+          'type' => 'DATETIME',
+          'compare' => '>', //比較（end_dateの日付と現在の日時を比較して未来のもの）
+          'value' => date('Y-m-d H:i:s') //現在の日時
+        ],
+        [
+          'key' => 'end_date',
+          'value' => '',
+        ],
+        [
+          'key' => 'end_date',
+          'compare' => 'NOT EXISTS',
+        ]
+      ],
     ];
     $the_query = new WP_Query($args);
     ?>
