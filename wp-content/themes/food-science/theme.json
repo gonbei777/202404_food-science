@@ -1,0 +1,61 @@
+{
+  "$schema": "https:\/\/schemas.wp.org\/trunk\/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "palette": [
+        {
+          "name": "Red",
+          "slug": "red",
+          "color": "#e60033"
+        },
+        {
+          "name": "Blue",
+          "slug": "blue",
+          "color": "#004be1"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "name": "游明朝体",
+          "slug": "micho-font",
+          "fontFamily": "'游明朝体', 'Yu Mincho','YuMincho', 'ヒラギノ明朝 Pro', 'Hiragino Mincho Pro', serif;"
+        },
+        {
+          "name": "RocknRoll One",
+          "slug": "rocknroll-one",
+          "fontFamily": "'RocknRoll One', sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "'RocknRoll One'",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "fontDisplay": "swap",
+              "src": [
+                "https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "spacing": [
+      {
+        "units": [
+          "px",
+          "em",
+          "rem",
+          "vh",
+          "vw"
+        ]
+      }
+    ],
+    "layout": {
+      "contentSize": "800px",
+      "wideSize": "1200px"
+    }
+  }
+}

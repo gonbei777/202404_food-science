@@ -21,6 +21,8 @@
     null
   );
 
+  wp_enqueue_style('content-font', 'https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
   // JS
   wp_enqueue_script('jquery'); //JavaScriptファイルを読み込む
   wp_enqueue_script(
