@@ -50,3 +50,7 @@ wp-config.php
 /wp-content/upgrade
 
 .DS_Store
+
+/wp-content/ai1wm-backups
+/wp-content/upgrade-temp-backup
+/wp-content/updraft
