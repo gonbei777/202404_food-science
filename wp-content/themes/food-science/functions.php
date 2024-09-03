@@ -1,5 +1,8 @@
 <?php
 
+include get_template_directory() . '/includes/settings.php';
+
+
 function my_content_font()
 {
   wp_enqueue_style('content-font', 'https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap', ['wp-edit-blocks']);
@@ -120,3 +123,18 @@ HTML;
   return $html;
 }
 add_filter('the_password_form', 'my_password_form');
+
+
+/**
+ * ループ内でアイキャッチ画像を表示する（無い場合はnoimageを表示)
+ * 
+ * @return void
+ */
+function display_thumbnail()
+{
+  if (has_post_thumbnail()):
+    the_post_thumbnail('medium');
+  else:
+    echo '<img src="' . get_template_directory_uri() . '/assets/img/common/noimage.png" alt="">';
+  endif;
+}
